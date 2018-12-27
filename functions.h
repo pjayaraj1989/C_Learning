@@ -10,6 +10,7 @@ struct packet
 };
 
 //LL functions
+int get_node_by_id(struct packet*, int);
 int count_list(struct packet*);
 void print_list(struct packet*);
 struct packet* add_node(struct packet*, int, char*);
@@ -19,6 +20,28 @@ char* my_strrev(char*);
 int my_substring(const char*, const char*);
 void my_puts(char*);
 int my_strlen(const char*);
+
+int get_node_by_id(struct packet* head_node, int id)
+{
+	struct packet* temp_node = head_node;
+	int node_id = 0;
+	if(temp_node == NULL)
+	{
+		printf("List is empty\n");
+		return node_id;
+	}
+	while(temp_node!=NULL)
+	{
+		node_id++;
+		if(temp_node->id == id)
+		{
+			break;
+		}
+		temp_node = temp_node->next;
+	}
+	
+	return node_id;
+}
 
 int count_list(struct packet* head_node)
 {
