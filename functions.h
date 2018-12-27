@@ -2,17 +2,16 @@
 #include<stdlib.h>
 
 //struct
-struct packet 
+struct packet
 {
 	int id;
 	char* name;
 	struct packet* next;
 };
 
-
 //ll functions
 void print_list(struct packet*);
-struct packet* add_node(int, char*);
+struct packet* add_node(struct packet*, int, char*);
 int my_strcmp(char*, char*);
 void my_pal_check(char*);
 char* my_strrev(char*);
@@ -22,27 +21,26 @@ int my_strlen(const char*);
 
 void print_list(struct packet* head_node)
 {
-		struct packet* temp_node = head_node;
-		if(temp_node == NULL)
-		{
-			printf("List is empty\n");
-			return;
-		}
-		while(temp_node->next != NULL)
-		{
-			printf("%d\t",temp_node->id);
-			printf("%s\n",temp_node->name);			
-			temp_node=temp_node->next;
-		}
+	struct packet* temp_node = head_node;
+	if (temp_node == NULL)
+	{
+		printf("List is empty\n");
+		return;
+	}
+	while (temp_node != NULL)
+	{
+		printf("%d\t", temp_node->id);
+		printf("%s\n", temp_node->name);
+		temp_node = temp_node->next;
+	}
 }
 
-struct packet* add_node(int id, char* name)
+struct packet* add_node(struct packet* head_node, int id, char* name)
 {
-	struct packet* head_node=NULL;
-	struct packet* temp_node=head_node;
-	
+	struct packet* temp_node = head_node;
+
 	//if first node
-	if(temp_node == NULL)
+	if (temp_node == NULL)
 	{
 		head_node = (struct packet*)malloc(sizeof(struct packet));
 		head_node->id = id;
@@ -50,20 +48,20 @@ struct packet* add_node(int id, char* name)
 		head_node->next = NULL;
 		return head_node;
 	}
-	
+
 	//go to last node
-	while(temp_node->next != NULL)
+	while (temp_node->next != NULL)
 	{
 		temp_node = temp_node->next;
 	}
-	
+
 	//now we're at the end of the list, now add next node
 	temp_node->next = (struct packet*)malloc(sizeof(struct packet));
 	temp_node = temp_node->next;
 	temp_node->id = id;
 	temp_node->name = name;
 	temp_node->next = NULL;
-	
+
 	return head_node;
 }
 
