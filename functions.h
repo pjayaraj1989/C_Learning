@@ -9,7 +9,8 @@ struct packet
 	struct packet* next;
 };
 
-//ll functions
+//LL functions
+int count_list(struct packet*);
 void print_list(struct packet*);
 struct packet* add_node(struct packet*, int, char*);
 int my_strcmp(char*, char*);
@@ -18,6 +19,24 @@ char* my_strrev(char*);
 int my_substring(const char*, const char*);
 void my_puts(char*);
 int my_strlen(const char*);
+
+int count_list(struct packet* head_node)
+{
+	int count=0;
+	struct packet* temp_node = head_node;
+	if(temp_node == NULL)
+	{
+		printf("List is empty\n");
+		return count;
+	}
+	while(temp_node != NULL)
+	{
+		count++;
+		temp_node = temp_node->next;
+	}
+	
+	return count;
+}
 
 void print_list(struct packet* head_node)
 {
