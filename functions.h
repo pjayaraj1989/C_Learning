@@ -1,5 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
+
+#pragma pack (1)
 
 //struct
 struct packet
@@ -14,12 +17,127 @@ int get_node_by_id(struct packet*, int);
 int count_list(struct packet*);
 void print_list(struct packet*);
 struct packet* add_node(struct packet*, int, char*);
+
+//string functions
 int my_strcmp(char*, char*);
 void my_pal_check(char*);
 char* my_strrev(char*);
 int my_substring(const char*, const char*);
 void my_puts(char*);
 int my_strlen(const char*);
+
+//file handling
+int get_file_count(char*);
+char* read_file_contents(char*);
+
+
+char* read_file_contents(char* filename)
+{
+	FILE* fp=NULL;
+	fp=fopen(filename,"r");
+	int count=0;
+	int i=0;
+	char ch;
+	char* output;	
+	count=get_file_count(filename);
+	output=(char*)malloc(count*(sizeof(char)));
+	
+	while((ch=fgetc(fp)) != EOF)
+	{
+		if(ch==EOF)
+		{
+			my_puts("EOF reached!");
+			break;
+		}		
+		*output = ch;
+		output++;
+	}		
+	fclose(fp);	
+	return output;
+}
+
+int get_file_count(char* filename)
+{
+	FILE* fp=NULL;
+	fp=fopen(filename,"r");
+	int count=0;
+	char c;
+	if(fp==NULL)
+	{
+		printf("File pointer is empty!");
+		fclose(fp);
+		return count;
+	}
+	else
+	{
+		while((c=fgetc(fp))) 
+		{
+			if (c==EOF) 
+			{	
+				break;
+			}
+			count+=1;
+		}
+		fclose(fp);
+		return count;
+	}	
+}
+
+//array functions
+int* create_int_array(int, char);
+
+//IMPLEMENTATIONS
+int* create_int_array(int count, char option)	//create an integer array with desired values
+{
+	int* output=NULL;
+	int i=0;
+	output=(int*)malloc(count*sizeof(int));
+	srand(time(0));
+
+	while(i<count)
+	{
+		switch (option)
+		{
+			case '1' : *(output+i)=1;
+						break;
+			case '0' : *(output+i)=0;
+						break;
+			case 'r'	: *(output+i)=(rand())%100;
+						break;
+			default	:	break;
+		}
+		i++;
+	}
+	//now print it
+	while(i<count)
+	{
+		printf("%d ", output[i]);
+		i++;
+	}
+	return output;
+}
+
+int get_node_by_name(struct packet* head_node, char* name)
+{
+	struct packet* temp_node = head_node;
+	int node_id = 0;
+	if(temp_node == NULL)
+	{
+		printf("List is empty\n");
+		return node_id;
+	}
+	while(temp_node!=NULL)
+	{
+		node_id++;
+		if(temp_node->name == name)
+		{
+			break;
+		}
+		temp_node = temp_node->next;
+	}
+	
+	return node_id;
+}
 
 int get_node_by_id(struct packet* head_node, int id)
 {
@@ -106,7 +224,6 @@ struct packet* add_node(struct packet* head_node, int id, char* name)
 
 	return head_node;
 }
-
 
 int my_strcmp(char* s1, char* s2)
 {
