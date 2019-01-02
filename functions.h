@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_DEPRECATE
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -33,26 +35,24 @@ char* read_file_contents(char*);
 
 char* read_file_contents(char* filename)
 {
-	FILE* fp=NULL;
-	fp=fopen(filename,"r");
-	int count=0;
-	int i=0;
-	char ch;
-	char* output;	
-	count=get_file_count(filename);
-	output=(char*)malloc(count*(sizeof(char)));
-	
-	while((ch=fgetc(fp)) != EOF)
+	FILE* fp = NULL;
+	fp = fopen(filename, "r");
+	int count = 0; int i = 0; char ch; char* output;
+
+	count = get_file_count(filename);
+	output = (char*)malloc(count*(sizeof(char)));
+	while(i<count)
 	{
-		if(ch==EOF)
+		ch = fgetc(fp);
+		if (ch == EOF)
 		{
 			my_puts("EOF reached!");
 			break;
-		}		
-		*output = ch;
-		output++;
-	}		
-	fclose(fp);	
+		}
+		*(output+i) = ch;
+		i++;
+	}
+	fclose(fp);
 	return output;
 }
 
