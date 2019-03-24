@@ -14,9 +14,9 @@ int main()
 	
 	//create_linked_list(5);
 	struct packet* head_node = NULL;
-	head_node=add_node(1, "Pranoy");
-	head_node=add_node(2,"Jayaraj");
-	head_node=add_node(4,"Leena");
+	head_node=add_node(head_node,1, "Pranoy");
+	head_node=add_node(head_node,2,"Jayaraj");
+	head_node=add_node(head_node,4,"Leena");
 	
 	print_list(head_node);
 	
