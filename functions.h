@@ -19,7 +19,9 @@ int get_node_by_id(struct packet*, int);
 int count_list(struct packet*);
 void print_list(struct packet*);
 struct packet* add_node(struct packet*, int, char*);
+struct packet* delete_node_by_id(struct packet*, int)
 
+	
 //string functions
 int my_strcmp(char*, char*);
 void my_pal_check(char*);
@@ -221,6 +223,47 @@ struct packet* add_node(struct packet* head_node, int id, char* name)
 	temp_node->id = id;
 	temp_node->name = name;
 	temp_node->next = NULL;
+
+	return head_node;
+}
+
+//delete a node by ID
+struct packet* delete_node_by_id(struct packet* head_node, int id)
+{
+	struct packet* temp_node = head_node;
+	struct packet* prev_node;
+
+	//if first node to be deleted
+	if (temp_node->id == id)
+	{
+		head_node = temp_node->next;
+		free(temp_node);
+		return head_node;
+	}
+
+	//not first node
+	while (temp_node->next != NULL)
+	{
+		if (temp_node->next->id == id)
+		{
+			//if last node
+			if (temp_node->next->next == NULL)
+			{
+				temp_node->next = NULL;
+				prev_node = temp_node->next;
+				free(prev_node);
+				break;
+			}
+			else
+			{
+				prev_node = temp_node->next;
+				temp_node->next = temp_node->next->next;
+				free(prev_node);
+				break;				
+			}
+		}
+		temp_node = temp_node->next;
+	}
 
 	return head_node;
 }
