@@ -20,7 +20,6 @@ int count_list(struct packet*);
 void print_list(struct packet*);
 struct packet* add_node(struct packet*, int, char*);
 struct packet* delete_node_by_id(struct packet*, int)
-
 	
 //string functions
 int my_strcmp(char*, char*);
@@ -33,6 +32,33 @@ int my_strlen(const char*);
 //file handling
 int get_file_count(char*);
 char* read_file_contents(char*);
+
+//bin <--> dec
+char* dec_to_bin_string(int);
+
+char* dec_to_bin_string(int a)
+{
+        int i=sizeof(int)-1;
+        char* bin_string;
+
+        bin_string = (char*)malloc(i+1);
+
+        while(i>=0)
+        {
+                if(a & (1<<i))
+                {
+                        *(bin_string + i) = '1';
+
+                }
+                else
+                {
+                        *(bin_string + i) = '0';
+                }
+
+                i--;
+        }
+        return bin_string;
+}
 
 
 char* read_file_contents(char* filename)
