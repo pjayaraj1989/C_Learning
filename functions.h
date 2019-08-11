@@ -40,25 +40,18 @@ char* dec_to_bin_string(int a)
 {
         int i=sizeof(int)-1;
         char* bin_string;
-
         bin_string = (char*)malloc(i+1);
-
         while(i>=0)
         {
                 if(a & (1<<i))
-                {
-                        *(bin_string + i) = '1';
-
-                }
+                        *(bin_string + (sizeof(int)-1)-i) = '1';
                 else
-                {
-                        *(bin_string + i) = '0';
-                }
-
+                         *(bin_string + (sizeof(int)-1)-i) = '0';
                 i--;
         }
         return bin_string;
 }
+
 
 
 char* read_file_contents(char* filename)
