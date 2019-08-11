@@ -35,6 +35,23 @@ char* read_file_contents(char*);
 
 //bin <--> dec
 char* dec_to_bin_string(int);
+void print_binary(int);
+
+
+void print_binary(int a)
+{
+        int i=sizeof(int)-1;
+        printf("Bin rep for decimal %d\n", a);
+        while(i>=0)
+        {
+                if(a & (1<<i))
+                        printf("1");
+                else
+                        printf("0");
+                i--;
+        }
+        printf("\n");
+}
 
 char* dec_to_bin_string(int a)
 {
