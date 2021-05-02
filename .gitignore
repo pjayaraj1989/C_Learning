@@ -1,0 +1,7 @@
+**/*.so
+**/*.o
+**/*.os
+**/*~
+.sconsign.dblite
+.venv3/
+**/__pycache__
