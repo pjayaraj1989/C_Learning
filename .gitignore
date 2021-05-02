@@ -4,4 +4,5 @@
 **/*~
 .sconsign.dblite
 .venv3/
-**/__pycache__
+**/__pycache_
+test_exe
