@@ -1,4 +1,5 @@
-#include "functions.h"
+#include "include.h"
+#include "str_functions.h"
 
 int main() {
     char *name = "Pranoy Jayaraj";

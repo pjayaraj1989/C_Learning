@@ -1,7 +1,4 @@
 
-#include <stdio.h>
-#include <stdlib.h>
-
 /*string functions*/
 void my_puts(char* str);
 int my_strlen(const char* str);

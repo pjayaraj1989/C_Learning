@@ -1,5 +1,5 @@
-
-#include "functions.h"
+#include "include.h"
+#include "str_functions.h"
 
 void my_puts(char *s) {
     while(*s != '\0') {
