@@ -1,5 +1,6 @@
 #include "include.h"
 #include "str_functions.h"
+#include "ll_functions.h"
 
 int main() {
     char *name = "Pranoy Jayaraj";
@@ -20,6 +21,13 @@ int main() {
     if (my_strcmp("Jayaraj", "Jayaraj") == 0) {
         my_puts("Str cmp passed");
     }
+
+    //create_linked_list(5);
+    struct packet* head_node = NULL;
+    head_node=add_node(head_node,1, "Pranoy");
+    head_node=add_node(head_node,2,"Jayaraj");
+    head_node=add_node(head_node,4,"Leena");
+    print_list(head_node);
 
     return 0;
 }
