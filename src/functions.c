@@ -66,3 +66,44 @@ char* my_strcat(const char* s1, const char* s2) {
 
     return s;
 }
+
+
+int my_substring(const char* main_string, const char* substring) {
+    int l1 = 0, l2 = 0, i = 0;
+    int count = 0, ret_val = 1;
+    l1 = my_strlen(main_string);
+    l2 = my_strlen(substring);
+    if (l1 >= l2) {
+        while (*main_string) {
+	    //first char found?
+	    if (*(main_string) == *substring) {
+	        while (i<l2) {
+		    if (*(main_string + i) == *(substring + i)) {
+		        count++;
+		    }
+		    i++;
+		}
+	    }
+            main_string++;
+	}
+    }
+    if (count == l2) {
+        ret_val = 0;
+    }
+
+    return ret_val;
+}
+
+
+void my_str_pal_check(char* s) {
+    char* rev_str = NULL;
+    if (s != NULL) {
+        if (my_strcmp(my_strrev(s), s) == 0) {
+	    my_puts("Palindrome\n");
+	}
+	else {
+	    my_puts("NOT palindrome\n");
+	}
+    }
+    return;
+}
