@@ -1,6 +1,7 @@
 #include "include.h"
 #include "str_functions.h"
 #include "ll_functions.h"
+#include "floating_point_functions.h"
 
 int main() {
     char *name = "Pranoy Jayaraj";
@@ -28,6 +29,12 @@ int main() {
     head_node=add_node(head_node,2,"Jayaraj");
     head_node=add_node(head_node,4,"Leena");
     print_list(head_node);
+
+    float f  = -3.14;
+    print_hex_flt(f);
+
+    double d = 0x6.25p+23;
+    print_hex_dbl(d);
 
     return 0;
 }
