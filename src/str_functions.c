@@ -1,13 +1,16 @@
 #include "include.h"
 #include "str_functions.h"
 
-void my_puts(char *s) {
+int my_puts(char *s) {
+    int ret_val = 0;
     while(*s != '\0') {
          printf("%c", *s);
 	 s++;
+	 ret_val++;
     }
     printf("\n");
-    return;
+
+    return ret_val;
 }
 
 int my_strlen(const char *s) {
