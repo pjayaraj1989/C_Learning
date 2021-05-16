@@ -1,11 +1,12 @@
+import os
 
 env = Environment()
 
 # gcc or clang
 env.Replace(CC = "gcc")
 
-#libraries
-source_files = Glob('#src/*.c')
+# test
+test_src = 'test_main.c'
 
 # exe file name
 test_exe = 'test_exe'
@@ -13,11 +14,14 @@ test_exe = 'test_exe'
 # # c flags
 cflags = ['-g', '-Wall']
 
-
 # include paths
-env.Append(CPPPATH='#include')
+inc_path = '#src/include'
+env.Append(CPPPATH=inc_path)
 
+# build lib
+src_path = '#src'
+libs = SConscript(os.path.join(src_path, 'SConscript'),)
 
 # exe creation
-exe = env.Program(test_exe, source_files,)
+exe = env.Program(test_exe, test_src, LIBS=libs)
 

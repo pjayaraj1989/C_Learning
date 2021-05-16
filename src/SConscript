@@ -1,0 +1,17 @@
+
+libenv = Environment()
+
+libenv.Append(
+    CFLAGS=['-Wall', '-g'],
+    STATIC_AND_SHARED_OBJECTS_ARE_THE_SAME = 1,
+)
+
+source_files = Glob('*.c')
+
+lib_name = 'myfuncs'
+
+libenv.Append(CPPPATH='include')
+
+mylib = libenv.SharedLibrary(lib_name, source_files)
+
+Return('mylib')
